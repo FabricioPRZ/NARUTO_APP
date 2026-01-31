@@ -2,7 +2,8 @@
 
 <div align="center">
 
-![Naruto Banner](https://via.placeholder.com/800x200/FF9933/FFFFFF?text=Naruto+App)
+![Naruto Banner](![icon](https://github.com/user-attachments/assets/978f8441-6b2d-469c-8224-70b372fba846)
+)
 
 [![Kotlin](https://img.shields.io/badge/Kotlin-1.9.20-blue.svg)](https://kotlinlang.org/)
 [![Android](https://img.shields.io/badge/Android-API%2024+-green.svg)](https://developer.android.com)
@@ -14,7 +15,7 @@
 [Características](#-características) •
 [Instalación](#-instalación) •
 [Arquitectura](#-arquitectura) •
-[Tecnologías](#-tecnologías) •
+[Tecnologías](#-tecnologías-utilizadas) •
 [API](#-api-utilizada)
 
 </div>
@@ -23,31 +24,32 @@
 
 ## 📖 Tabla de Contenidos
 
-- [Sobre el Proyecto](#-sobre-el-proyecto)
-- [Características](#-características)
-- [Tecnologías Utilizadas](#-tecnologías-utilizadas)
-- [Arquitectura](#-arquitectura)
-- [Instalación](#-instalación)
-- [Estructura del Proyecto](#-estructura-del-proyecto)
-- [API Utilizada](#-api-utilizada)
+* [Sobre el Proyecto](#-sobre-el-proyecto)
+* [Características](#-características)
+* [Tecnologías Utilizadas](#-tecnologías-utilizadas)
+* [Arquitectura](#-arquitectura)
+* [Instalación](#-instalación)
+* [Estructura del Proyecto](#-estructura-del-proyecto)
+* [API Utilizada](#-api-utilizada)
 
 ---
 
 ## 🎯 Sobre el Proyecto
 
-**Naruto App** es una aplicación móvil Android nativa desarrollada como proyecto académico que demuestra la implementación de **Clean Architecture** y las mejores prácticas modernas de desarrollo Android.
+**Naruto App** es una aplicación móvil Android nativa desarrollada como proyecto académico que demuestra la implementación de **Clean Architecture** y buenas prácticas modernas de desarrollo Android.
 
-### Problemática que Resuelve
+### Problemática
 
-Los fanáticos del anime Naruto enfrentan dificultades para:
-- Acceder rápidamente a información completa de la serie
-- Identificar qué episodios son relleno (filler) vs canon
-- Consultar calificaciones y fechas de emisión
-- Encontrar toda esta información en un solo lugar
+Los fanáticos de Naruto suelen necesitar:
+
+* Acceso rápido a información confiable de la serie
+* Identificar episodios **canon**, **filler** y **recap**
+* Consultar calificaciones y fechas de emisión
+* Centralizar toda la información en una sola aplicación
 
 ### Solución
 
-Una aplicación móvil que centraliza toda la información del anime Naruto, consultando datos actualizados desde MyAnimeList a través de la API de Jikan, presentándolos de forma visual, organizada y accesible.
+Una aplicación Android que centraliza la información del anime Naruto utilizando datos actualizados de **MyAnimeList** a través de la **API de Jikan**, presentados de forma clara, visual y accesible.
 
 ---
 
@@ -55,220 +57,168 @@ Una aplicación móvil que centraliza toda la información del anime Naruto, con
 
 ### Funcionalidades Principales
 
-- 📺 **Información Completa del Anime**
-    - Poster oficial de alta calidad
-    - Título en inglés y japonés
-    - Sinopsis detallada
-    - Número total de episodios
-    - Calificación de MyAnimeList
-    - Estado de emisión y duración
+* 📺 **Información del Anime**
 
-- 📋 **Lista Completa de Episodios** (220 episodios)
-    - Títulos en inglés y japonés
-    - Clasificación visual mediante badges:
-        - 🟢 **CANON** - Episodios de la historia principal
-        - 🔴 **FILLER** - Episodios de relleno
-        - 🟠 **RECAP** - Episodios de recapitulación
-    - Calificación individual por episodio
-    - Fecha de emisión original
+  * Poster oficial en alta calidad
+  * Título en inglés y japonés
+  * Sinopsis detallada
+  * Número total de episodios
+  * Calificación en MyAnimeList
+  * Estado de emisión y duración
 
-- 🎨 **Interfaz Moderna**
-    - Diseño con Material Design 3
-    - Tema personalizado con colores de Naruto
-    - Animaciones fluidas
-    - Navegación intuitiva
+* 📋 **Lista Completa de Episodios**
 
-- ⚡ **Rendimiento Optimizado**
-    - Carga asíncrona de datos
-    - Renderizado eficiente con LazyColumn
-    - Caché automático de imágenes
-    - Manejo inteligente de estados (Loading/Error/Success)
+  * Títulos en inglés y japonés
+  * Clasificación visual:
+
+    * 🟢 **CANON**
+    * 🔴 **FILLER**
+    * 🟠 **RECAP**
+  * Calificación individual
+  * Fecha de emisión
+
+* 🎨 **Interfaz Moderna**
+
+  * Material Design 3
+  * Tema personalizado inspirado en Naruto
+  * Animaciones fluidas
+  * Navegación intuitiva
+
+* ⚡ **Rendimiento Optimizado**
+
+  * Carga asíncrona con Coroutines
+  * LazyColumn para listas eficientes
+  * Caché automático de imágenes
+  * Manejo de estados (Loading / Error / Success)
 
 ---
 
 ## 🛠️ Tecnologías Utilizadas
 
 ### Lenguaje y Framework
-- **Kotlin**  - Lenguaje oficial de Android
-- **Jetpack Compose** - UI Toolkit moderno y declarativo
-- **Material Design 3** - Sistema de diseño de Google
+
+* **Kotlin**
+* **Jetpack Compose**
+* **Material Design 3**
 
 ### Arquitectura y Patrones
-- **Clean Architecture** - Separación de responsabilidades en capas
-- **MVVM** (Model-View-ViewModel) - Patrón de presentación
-- **Repository Pattern** - Abstracción de fuentes de datos
-- **Use Cases** - Encapsulación de lógica de negocio
-- **Dependency Injection Manual** - Gestión de dependencias
 
-### Librerías Principales
+* **Clean Architecture**
+* **MVVM**
+* **Repository Pattern**
+* **Use Cases**
+* **Inyección de dependencias manual**
 
-| Librería | Versión | Propósito |
-|----------|---------|-----------|
-| Retrofit | 2.9.0 | Cliente HTTP para APIs REST |
-| Gson | 2.10.1 | Serialización/Deserialización JSON |
-| Coil | 2.5.0 | Carga asíncrona de imágenes |
-| Kotlin Coroutines | 1.7.3 | Programación asíncrona |
-| Lifecycle Components | 2.7.0 | Manejo de ciclo de vida |
-| Compose BOM | 2023.10.01 | Bill of Materials para Compose |
+### Librerías
 
-### Herramientas de Desarrollo
-- **Android Studio** Hedgehog (2023.1.1+)
-- **Gradle** 8.2 con Kotlin DSL
-- **Git & GitHub** - Control de versiones
-- **OkHttp Logging Interceptor** - Debugging de requests
+| Librería    | Versión    | Uso               |
+| ----------- | ---------- | ----------------- |
+| Retrofit    | 2.9.0      | Cliente HTTP      |
+| Gson        | 2.10.1     | JSON Parsing      |
+| Coil        | 2.5.0      | Carga de imágenes |
+| Coroutines  | 1.7.3      | Asincronía        |
+| Lifecycle   | 2.7.0      | Ciclo de vida     |
+| Compose BOM | 2023.10.01 | Dependencias UI   |
+
+### Herramientas
+
+* Android Studio Hedgehog
+* Gradle 8.2 (Kotlin DSL)
+* Git y GitHub
+* OkHttp Logging Interceptor
 
 ---
 
 ## 🏗️ Arquitectura
 
-Este proyecto implementa **Clean Architecture** con separación en 3 capas:
-┌─────────────────────────────────────────┐
-│        PRESENTATION LAYER               │
-│  (UI, ViewModels, States)              │
-│  • Jetpack Compose                     │
-│  • StateFlow                           │
-└────────────────┬────────────────────────┘
-                 │
-                 ↓
-┌─────────────────────────────────────────┐
-│         DOMAIN LAYER                    │
-│  (Entities, Use Cases, Repositories)   │
-│  • Business Logic                      │
-│  • Pure Kotlin                         │
-└────────────────┬────────────────────────┘
-                 │
-                 ↓
-┌─────────────────────────────────────────┐
-│          DATA LAYER                     │
-│  (API, DTOs, Repository Impl)          │
-│  • Retrofit                            │
-│  • Mappers                             │
-└─────────────────────────────────────────┘
+El proyecto sigue **Clean Architecture** con tres capas principales:
 
-### Flujo de DatosUsuario interactúa con UI
-↓
-ViewModel recibe evento
-↓
-ViewModel llama Use Case
-↓
-Use Case ejecuta lógica de negocio
-↓
-Use Case consulta Repository
-↓
-Repository obtiene datos de API
-↓
-Repository mapea DTO → Entity
-↓
-Use Case procesa y retorna Result
-↓
-ViewModel actualiza StateFlow
-↓
-UI se recompone automáticamente
+```
+PRESENTATION
+(UI, ViewModels, State)
+        ↓
+DOMAIN
+(Use Cases, Entities, Repositories)
+        ↓
+DATA
+(API, DTOs, Mappers)
+```
+
+### Flujo de Datos
+
+1. Usuario interactúa con la UI
+2. ViewModel recibe el evento
+3. Se ejecuta un Use Case
+4. El repositorio obtiene datos de la API
+5. DTOs se mapean a entidades de dominio
+6. El estado se actualiza y la UI se recompone
 
 ### Principios Aplicados
 
-- ✅ **Separación de Responsabilidades** - Cada capa tiene un propósito claro
-- ✅ **Inversión de Dependencias** - Las capas externas dependen de las internas
-- ✅ **Abstracción** - Interfaces separan implementaciones
-- ✅ **Single Responsibility** - Clases con una única razón para cambiar
-- ✅ **Testabilidad** - Fácil de mockear y testear
+* Separación de responsabilidades
+* Inversión de dependencias
+* Abstracción mediante interfaces
+* Single Responsibility Principle
+* Alta testabilidad
 
 ---
 
 ## 📥 Instalación
 
-### Prerrequisitos
+### Requisitos
 
-Asegúrate de tener instalado:
+* Android Studio Hedgehog o superior
+* JDK 17
+* Android SDK API 24+
+* Git (opcional)
 
-- ✅ **Android Studio** Hedgehog o superior
-- ✅ **JDK 17** (incluido con Android Studio)
-- ✅ **Android SDK** con API 24 o superior
-- ✅ **Git** (opcional, para clonar el repositorio)
+### Pasos
 
-### Pasos de Instalación
+1. Clonar el repositorio:
 
-1. **Clonar el repositorio**
-```bash git clone https://github.com/FabricioPRZ/NARUTO_APP.git```
-```cd NARUTO_APP```
+```bash
+git clone https://github.com/FabricioPRZ/NARUTO_APP.git
+cd NARUTO_APP
+```
 
-2. **Abrir en Android Studio**File > Open > Seleccionar la carpeta "NARUTO_APP"
+2. Abrir el proyecto en Android Studio
 
-3. **Sincronizar Gradle**
+3. Sincronizar Gradle
 
-Espera a que Android Studio sincronice automáticamente, o manualmente:File > Sync Project with Gradle Files
+4. Ejecutar la app en un emulador o dispositivo físico
 
-4. **Ejecutar la aplicación**
+### Configuración Opcional
 
-- Conecta un dispositivo Android o inicia un emulador
-- Click en el botón **Run** (▶️) o usa `Shift + F10`
+Modificar la URL base de la API:
 
-### Configuración Adicional (Opcional)
-
-Si deseas modificar la URL base de la API:
-```kotlin// build.gradle.kts (app module)```
-defaultConfig {
-buildConfigField("String", "BASE_URL", ""https://api.jikan.moe/v4/\"")
-}
+```kotlin
+buildConfigField(
+    "String",
+    "BASE_URL",
+    "\"https://api.jikan.moe/v4/\""
+)
+```
 
 ---
 
-## 📂 Estructura del Proyecto com.example.narutoapp/
+## 📂 Estructura del Proyecto
+
+```
+com.example.narutoapp
 │
-├── 📁 core/                                    # Módulos compartidos
-│   ├── 📁 di/
-│   │   └── 📄 AppContainer.kt                 # Inyección de dependencias
-│   │
-│   ├── 📁 network/
-│   │   └── 📄 JikanApi.kt                     # Definición de API
-│   │
-│   └── 📁 ui/theme/
-│       ├── 📄 Theme.kt                        # Tema de la app
-│       └── 📄 Type.kt                         # Tipografía
+├── core
+│   ├── di
+│   ├── network
+│   └── ui/theme
 │
-├── 📁 features/                               # Funcionalidades
-│   └── 📁 naruto/
-│       │
-│       ├── 📁 data/                           # Capa de Datos
-│       │   ├── 📁 datasources/remote/
-│       │   │   ├── 📁 mapper/
-│       │   │   │   └── 📄 NarutoMapper.kt    # DTO → Domain
-│       │   │   │
-│       │   │   └── 📁 model/
-│       │   │       ├── 📄 AnimeResponse.kt   # DTOs
-│       │   │       └── 📄 EpisodesResponse.kt
-│       │   │
-│       │   └── 📁 repositories/
-│       │       └── 📄 NarutoRepositoryImpl.kt # Implementación
-│       │
-│       ├── 📁 domain/                         # Capa de Dominio
-│       │   ├── 📁 entities/
-│       │   │   ├── 📄 AnimeInfo.kt           # Entidades
-│       │   │   └── 📄 Episode.kt
-│       │   │
-│       │   ├── 📁 repositories/
-│       │   │   └── 📄 NarutoRepository.kt    # Interface
-│       │   │
-│       │   └── 📁 usecases/
-│       │       ├── 📄 GetAnimeInfoUseCase.kt
-│       │       └── 📄 GetEpisodesUseCase.kt
-│       │
-│       ├── 📁 di/
-│       │   └── 📄 NarutoModule.kt            # Módulo DI
-│       │
-│       └── 📁 presentation/                   # Capa de Presentación
-│           ├── 📁 components/
-│           │   └── 📄 EpisodeCard.kt         # Componentes UI
-│           │
-│           ├── 📁 screens/
-│           │   ├── 📄 NarutoScreen.kt        # Pantalla principal
-│           │   └── 📄 NarutoUiState.kt       # Estado UI
-│           │
-│           └── 📁 viewmodels/
-│               ├── 📄 NarutoViewModel.kt
-│               └── 📄 NarutoViewModelFactory.kt
+├── features/naruto
+│   ├── data
+│   ├── domain
+│   ├── di
+│   └── presentation
 │
-└── 📄 MainActivity.kt                         # Activity principal
+└── MainActivity.kt
+```
 
 ---
 
@@ -276,36 +226,39 @@ buildConfigField("String", "BASE_URL", ""https://api.jikan.moe/v4/\"")
 
 ### Jikan API v4
 
-**Jikan** es la API REST no oficial más popular para MyAnimeList.
+* Base URL: `https://api.jikan.moe/v4/`
+* Documentación: [https://docs.api.jikan.moe/](https://docs.api.jikan.moe/)
+* Sin autenticación
+* Rate limit: 3 req/s, 60 req/min
 
-- 🌍 **Base URL:** `https://api.jikan.moe/v4/`
-- 📚 **Documentación:** https://docs.api.jikan.moe/
-- 🔓 **Sin autenticación** - Completamente gratuita
-- ⚡ **Rate Limit:** 3 requests/segundo, 60 requests/minuto
+### Endpoints
 
-### Endpoints Utilizados
+```http
+GET /anime/{id}
+GET /anime/{id}/episodes?page={page}
+```
 
-#### 1. Obtener Información del Anime
-```httpGET /anime/{id}```
+### IDs Utilizados
 
-#### 2. Obtener Episodios
-```httpGET /anime/{id}/episodes?page={page}```
-### IDs de Series Naruto
-```kotlin const val NARUTO_ID = 20              // Naruto (220 episodios)```
-```const val NARUTO_SHIPPUDEN_ID = 1735  // Naruto Shippuden (500 episodios)```
-```const val BORUTO_ID = 34566           // Boruto: Naruto Next Generations```
+```kotlin
+const val NARUTO_ID = 20
+const val NARUTO_SHIPPUDEN_ID = 1735
+const val BORUTO_ID = 34566
+```
 
 ---
 
+## 👤 Autor
 
-- 📧 Email: fabricioperzcontacto@gmail.com
-- 🐙 GitHub: [@FabricioPRZ](https://github.com/FabricioPRZ)
-- 💼 LinkedIn: [Victor Fabricio Pérez Constantino](https://linkedin.com/in/victor-fabricio-perez-constantino-4006453a3)
+* **Fabricio Pérez**
+* GitHub: [@FabricioPRZ](https://github.com/FabricioPRZ)
+* Email: [fabricioperzcontacto@gmail.com](mailto:fabricioperzcontacto@gmail.com)
+* LinkedIn: Victor Fabricio Pérez Constantino
+
+---
 
 <div align="center">
 
-### ⭐ Si te gustó este proyecto, dale una estrella!
-
-**Desarrollado por Fabricio Pérez**
+### ⭐ Si te gustó este proyecto, dale una estrella
 
 </div>
