@@ -121,22 +121,23 @@ Una aplicación móvil que centraliza toda la información del anime Naruto, con
 
 ## 🏗️ Arquitectura
 
-Este proyecto implementa **Clean Architecture** con separación en 3 capas:┌─────────────────────────────────────────┐
+Este proyecto implementa **Clean Architecture** con separación en 3 capas:
+┌─────────────────────────────────────────┐
 │        PRESENTATION LAYER               │
 │  (UI, ViewModels, States)              │
 │  • Jetpack Compose                     │
 │  • StateFlow                           │
 └────────────────┬────────────────────────┘
-│
-↓
+                 │
+                 ↓
 ┌─────────────────────────────────────────┐
 │         DOMAIN LAYER                    │
 │  (Entities, Use Cases, Repositories)   │
 │  • Business Logic                      │
 │  • Pure Kotlin                         │
 └────────────────┬────────────────────────┘
-│
-↓
+                 │
+                 ↓
 ┌─────────────────────────────────────────┐
 │          DATA LAYER                     │
 │  (API, DTOs, Repository Impl)          │
@@ -188,8 +189,8 @@ Asegúrate de tener instalado:
 ### Pasos de Instalación
 
 1. **Clonar el repositorio**
-```bashgit clone https://github.com/FabricioPRZ/NARUTO_APP.git
-cd NARUTO_APP
+```bash git clone https://github.com/FabricioPRZ/NARUTO_APP.git```
+```cd NARUTO_APP```
 
 2. **Abrir en Android Studio**File > Open > Seleccionar la carpeta "NARUTO_APP"
 
@@ -205,7 +206,7 @@ Espera a que Android Studio sincronice automáticamente, o manualmente:File > Sy
 ### Configuración Adicional (Opcional)
 
 Si deseas modificar la URL base de la API:
-```kotlin// build.gradle.kts (app module)
+```kotlin// build.gradle.kts (app module)```
 defaultConfig {
 buildConfigField("String", "BASE_URL", ""https://api.jikan.moe/v4/\"")
 }
@@ -285,57 +286,14 @@ buildConfigField("String", "BASE_URL", ""https://api.jikan.moe/v4/\"")
 ### Endpoints Utilizados
 
 #### 1. Obtener Información del Anime
-```httpGET /anime/{id}
-
-**Ejemplo:**
-```bashcurl https://api.jikan.moe/v4/anime/20
-
-**Respuesta (simplificada):**
-```json{
-"data": {
-"mal_id": 20,
-"title": "Naruto",
-"title_japanese": "ナルト",
-"episodes": 220,
-"score": 7.99,
-"synopsis": "Moments prior to Naruto Uzumaki's birth...",
-"images": {
-"jpg": {
-"large_image_url": "https://cdn.myanimelist.net/..."
-}
-}
-}
-}
+```httpGET /anime/{id}```
 
 #### 2. Obtener Episodios
-```httpGET /anime/{id}/episodes?page={page}
-
-**Ejemplo:**
-```bashcurl https://api.jikan.moe/v4/anime/20/episodes?page=1
-
-**Respuesta (simplificada):**
-```json{
-"data": [
-{
-"mal_id": 1,
-"title": "Enter: Naruto Uzumaki!",
-"title_japanese": "参上!うずまきナルト",
-"filler": false,
-"recap": false,
-"score": 7.5,
-"aired": "2002-10-03T00:00:00+00:00"
-}
-],
-"pagination": {
-"last_visible_page": 3,
-"has_next_page": true
-}
-}
-
+```httpGET /anime/{id}/episodes?page={page}```
 ### IDs de Series Naruto
-```kotlinconst val NARUTO_ID = 20              // Naruto (220 episodios)
-const val NARUTO_SHIPPUDEN_ID = 1735  // Naruto Shippuden (500 episodios)
-const val BORUTO_ID = 34566           // Boruto: Naruto Next Generations
+```kotlin const val NARUTO_ID = 20              // Naruto (220 episodios)```
+```const val NARUTO_SHIPPUDEN_ID = 1735  // Naruto Shippuden (500 episodios)```
+```const val BORUTO_ID = 34566           // Boruto: Naruto Next Generations```
 
 ---
 
