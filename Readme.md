@@ -107,7 +107,7 @@ Una aplicación móvil que centraliza toda la información del anime Naruto, con
 - **MVVM** (Model-View-ViewModel) - Patrón de presentación
 - **Repository Pattern** - Abstracción de fuentes de datos
 - **Use Cases** - Encapsulación de lógica de negocio
-- **Dependency Injection Manual** - Gestión de dependencias
+- **Hilt** - Inyección de dependencias con Dagger Hilt
 
 ### Librerías Principales
 
@@ -119,6 +119,8 @@ Una aplicación móvil que centraliza toda la información del anime Naruto, con
 | Kotlin Coroutines | 1.7.3 | Programación asíncrona |
 | Lifecycle Components | 2.7.0 | Manejo de ciclo de vida |
 | Compose BOM | 2023.10.01 | Bill of Materials para Compose |
+| Hilt | 2.51.1 | Inyección de dependencias |
+| Hilt Navigation Compose | 1.2.0 | Integración de Hilt con Compose |
 
 ### Herramientas de Desarrollo
 
@@ -132,7 +134,6 @@ Una aplicación móvil que centraliza toda la información del anime Naruto, con
 ## 🏗️ Arquitectura
 
 Este proyecto implementa **Clean Architecture** con separación en 3 capas:
-
 ```
 ┌─────────────────────────────────────────┐
 │        PRESENTATION LAYER               │
@@ -159,7 +160,6 @@ Este proyecto implementa **Clean Architecture** con separación en 3 capas:
 ```
 
 ### Flujo de Datos
-
 ```
 Usuario interactúa con UI
           ↓
@@ -206,14 +206,12 @@ Asegúrate de tener instalado:
 ### Pasos de Instalación
 
 #### 1. Clonar el repositorio
-
 ```bash
 git clone https://github.com/FabricioPRZ/NARUTO_APP.git
 cd NARUTO_APP
 ```
 
 #### 2. Abrir en Android Studio
-
 ```
 File > Open > Seleccionar la carpeta "NARUTO_APP"
 ```
@@ -221,7 +219,6 @@ File > Open > Seleccionar la carpeta "NARUTO_APP"
 #### 3. Sincronizar Gradle
 
 Espera a que Android Studio sincronice automáticamente, o manualmente:
-
 ```
 File > Sync Project with Gradle Files
 ```
@@ -234,7 +231,6 @@ File > Sync Project with Gradle Files
 ### Configuración Adicional (Opcional)
 
 Si deseas modificar la URL base de la API:
-
 ```kotlin
 // build.gradle.kts (app module)
 defaultConfig {
@@ -242,16 +238,23 @@ defaultConfig {
 }
 ```
 
+Asegúrate también de que `NarutoApp` esté registrada en el `AndroidManifest.xml`:
+```xml
+<application
+    android:name=".NarutoApp"
+    ...
+>
+```
+
 ---
 
 ## 📂 Estructura del Proyecto
-
 ```
 com.example.narutoapp/
 │
 ├── 📁 core/                                    # Módulos compartidos
 │   ├── 📁 di/
-│   │   └── 📄 AppContainer.kt                 # Inyección de dependencias
+│   │   └── 📄 NetworkModule.kt                # Módulo de red (Hilt)
 │   │
 │   ├── 📁 network/
 │   │   └── 📄 JikanApi.kt                     # Definición de API
@@ -288,7 +291,7 @@ com.example.narutoapp/
 │       │       └── 📄 GetEpisodesUseCase.kt
 │       │
 │       ├── 📁 di/
-│       │   └── 📄 NarutoModule.kt            # Módulo DI
+│       │   └── 📄 RepositoryModule.kt        # Módulo de repositorio (Hilt)
 │       │
 │       └── 📁 presentation/                   # Capa de Presentación
 │           ├── 📁 components/
@@ -299,9 +302,9 @@ com.example.narutoapp/
 │           │   └── 📄 NarutoUiState.kt       # Estado UI
 │           │
 │           └── 📁 viewmodels/
-│               ├── 📄 NarutoViewModel.kt
-│               └── 📄 NarutoViewModelFactory.kt
+│               └── 📄 NarutoViewModel.kt     # @HiltViewModel
 │
+├── 📄 NarutoApp.kt                            # @HiltAndroidApp
 └── 📄 MainActivity.kt                         # Activity principal
 ```
 
@@ -321,13 +324,11 @@ com.example.narutoapp/
 ### Endpoints Utilizados
 
 #### 1. Obtener Información del Anime
-
 ```http
 GET /anime/{id}
 ```
 
 **Ejemplo de respuesta:**
-
 ```json
 {
   "data": {
@@ -343,13 +344,11 @@ GET /anime/{id}
 ```
 
 #### 2. Obtener Episodios
-
 ```http
 GET /anime/{id}/episodes?page={page}
 ```
 
 **Ejemplo de respuesta:**
-
 ```json
 {
   "data": [
@@ -366,7 +365,6 @@ GET /anime/{id}/episodes?page={page}
 ```
 
 ### IDs de Series Naruto
-
 ```kotlin
 const val NARUTO_ID = 20              // Naruto (220 episodios)
 const val NARUTO_SHIPPUDEN_ID = 1735  // Naruto Shippuden (500 episodios)
