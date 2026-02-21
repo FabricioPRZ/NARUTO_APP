@@ -2,8 +2,9 @@ package com.example.narutoapp.features.naruto.domain.usecases
 
 import com.example.narutoapp.features.naruto.domain.entities.Episode
 import com.example.narutoapp.features.naruto.domain.repositories.NarutoRepository
+import javax.inject.Inject
 
-class GetEpisodesUseCase(
+class GetEpisodesUseCase @Inject constructor(
     private val repository: NarutoRepository
 ) {
     suspend operator fun invoke(animeId: Int): Result<List<Episode>> {
@@ -15,8 +16,6 @@ class GetEpisodesUseCase(
             while (hasMorePages) {
                 val episodes = repository.getEpisodes(animeId, currentPage)
                 allEpisodes.addAll(episodes)
-
-                // Si recibimos menos de 100 episodios, no hay más páginas
                 hasMorePages = episodes.size >= 100
                 currentPage++
             }

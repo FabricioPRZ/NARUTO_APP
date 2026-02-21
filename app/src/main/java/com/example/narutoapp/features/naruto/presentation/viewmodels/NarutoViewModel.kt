@@ -6,12 +6,15 @@ import com.example.narutoapp.core.network.JikanApi
 import com.example.narutoapp.features.naruto.domain.usecases.GetAnimeInfoUseCase
 import com.example.narutoapp.features.naruto.domain.usecases.GetEpisodesUseCase
 import com.example.narutoapp.features.naruto.presentation.screens.NarutoUiState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class NarutoViewModel(
+@HiltViewModel
+class NarutoViewModel @Inject constructor(
     private val getAnimeInfoUseCase: GetAnimeInfoUseCase,
     private val getEpisodesUseCase: GetEpisodesUseCase
 ) : ViewModel() {
@@ -27,14 +30,12 @@ class NarutoViewModel(
         _uiState.update { it.copy(isLoading = true) }
 
         viewModelScope.launch {
-            // Cargar información del anime
             val animeResult = getAnimeInfoUseCase(JikanApi.NARUTO_ID)
 
             animeResult.fold(
                 onSuccess = { animeInfo ->
                     _uiState.update { it.copy(animeInfo = animeInfo) }
 
-                    // Cargar episodios
                     val episodesResult = getEpisodesUseCase(JikanApi.NARUTO_ID)
 
                     episodesResult.fold(

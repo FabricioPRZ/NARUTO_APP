@@ -15,20 +15,16 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.example.narutoapp.features.naruto.presentation.components.EpisodeCard
 import com.example.narutoapp.features.naruto.presentation.viewmodels.NarutoViewModel
-import com.example.narutoapp.features.naruto.presentation.viewmodels.NarutoViewModelFactory
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NarutoScreen(
-    factory: NarutoViewModelFactory
-) {
-    val viewModel: NarutoViewModel = viewModel(factory = factory)
+fun NarutoScreen() {
+    val viewModel: NarutoViewModel = hiltViewModel()
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     Scaffold(
@@ -39,7 +35,7 @@ fun NarutoScreen(
                     Text(
                         "Naruto",
                         fontWeight = FontWeight.ExtraBold,
-                        color = Color(0xFFFF9933) // Naruto orange
+                        color = Color(0xFFFF9933)
                     )
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
@@ -84,10 +80,7 @@ fun NarutoScreen(
                 }
 
                 else -> {
-                    LazyColumn(
-                        modifier = Modifier.fillMaxSize()
-                    ) {
-                        // Header con información del anime
+                    LazyColumn(modifier = Modifier.fillMaxSize()) {
                         uiState.animeInfo?.let { animeInfo ->
                             item {
                                 Card(
@@ -96,10 +89,7 @@ fun NarutoScreen(
                                         .padding(16.dp),
                                     elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
                                 ) {
-                                    Column(
-                                        modifier = Modifier.fillMaxWidth()
-                                    ) {
-                                        // Imagen
+                                    Column(modifier = Modifier.fillMaxWidth()) {
                                         animeInfo.imageUrl?.let { imageUrl ->
                                             AsyncImage(
                                                 model = imageUrl,
@@ -112,9 +102,7 @@ fun NarutoScreen(
                                             )
                                         }
 
-                                        Column(
-                                            modifier = Modifier.padding(16.dp)
-                                        ) {
+                                        Column(modifier = Modifier.padding(16.dp)) {
                                             Text(
                                                 text = animeInfo.title,
                                                 style = MaterialTheme.typography.headlineMedium,
@@ -186,7 +174,6 @@ fun NarutoScreen(
                             }
                         }
 
-                        // Título de episodios
                         item {
                             Text(
                                 text = "Episodios (${uiState.episodes.size})",
@@ -196,7 +183,6 @@ fun NarutoScreen(
                             )
                         }
 
-                        // Lista de episodios
                         itemsIndexed(uiState.episodes) { index, episode ->
                             EpisodeCard(
                                 episodeNumber = index + 1,
@@ -209,7 +195,6 @@ fun NarutoScreen(
                             )
                         }
 
-                        // Espaciado final
                         item {
                             Spacer(modifier = Modifier.height(16.dp))
                         }

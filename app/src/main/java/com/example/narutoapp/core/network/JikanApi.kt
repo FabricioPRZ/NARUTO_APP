@@ -20,7 +20,6 @@ interface JikanApi {
     ): EpisodesResponse
 
     companion object {
-        // IDs de Naruto
         const val NARUTO_ID = 20
         const val NARUTO_SHIPPUDEN_ID = 1735
         const val BORUTO_ID = 34566
