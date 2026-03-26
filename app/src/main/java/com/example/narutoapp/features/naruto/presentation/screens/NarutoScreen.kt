@@ -23,7 +23,9 @@ import com.example.narutoapp.features.naruto.presentation.viewmodels.NarutoViewM
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NarutoScreen() {
+fun NarutoScreen(
+    onEpisodeClick: (Int) -> Unit = {}
+) {
     val viewModel: NarutoViewModel = hiltViewModel()
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -191,7 +193,8 @@ fun NarutoScreen() {
                                 aired = episode.aired,
                                 score = episode.score,
                                 isFiller = episode.isFiller,
-                                isRecap = episode.isRecap
+                                isRecap = episode.isRecap,
+                                onClick = { onEpisodeClick(episode.malId) }
                             )
                         }
 

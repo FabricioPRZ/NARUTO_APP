@@ -21,9 +21,11 @@ fun EpisodeCard(
     score: Double?,
     isFiller: Boolean,
     isRecap: Boolean,
+    onClick: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     Card(
+        onClick = onClick,
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp),
